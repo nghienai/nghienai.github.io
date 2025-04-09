@@ -1,17 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Đăng ký nhận thông tin</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to right, #e0ecff, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    input[type="email"] {
+      padding: 0.8rem;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #0077ff;
+    }
+
+    button {
+      background-color: #0077ff;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005fd4;
+    }
+
+    #responseMessage {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #007f00;
+    }
+  </style>
 </head>
 <body>
-  <h2>Đăng ký email</h2>
-  <form id="subscribeForm">
-    <input type="email" name="email" id="email" placeholder="Nhập email của bạn" required />
-    <button type="submit">Gửi</button>
-  </form>
 
-  <p id="responseMessage"></p>
+  <div class="form-container">
+    <h2>📬 Đăng ký nhận bản tin</h2>
+    <form id="subscribeForm">
+      <input type="email" name="email" id="email" placeholder="Nhập email của bạn" required />
+      <button type="submit">Đăng ký</button>
+    </form>
+    <p id="responseMessage"></p>
+  </div>
 
   <script>
     document.getElementById('subscribeForm').addEventListener('submit', function(e) {
@@ -27,16 +92,18 @@
       })
       .then(response => {
         if (response.ok) {
-          document.getElementById('responseMessage').textContent = 'Đăng ký thành công!';
+          document.getElementById('responseMessage').textContent = '🎉 Đăng ký thành công!';
+          document.getElementById('email').value = '';
         } else {
-          document.getElementById('responseMessage').textContent = 'Lỗi khi gửi. Thử lại.';
+          document.getElementById('responseMessage').textContent = '⚠️ Có lỗi khi gửi. Thử lại.';
         }
       })
       .catch(error => {
         console.error('Error:', error);
-        document.getElementById('responseMessage').textContent = 'Có lỗi xảy ra.';
+        document.getElementById('responseMessage').textContent = '❌ Có lỗi xảy ra.';
       });
     });
   </script>
+
 </body>
 </html>
